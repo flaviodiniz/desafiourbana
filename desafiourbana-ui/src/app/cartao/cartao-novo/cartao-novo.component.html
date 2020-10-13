@@ -1,0 +1,49 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>{{ editando ? 'Edição de' : 'Novo' }} Cartão</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" ngModel #nome="ngModel" 
+        [(ngModel)]="cartao.nome" required>
+
+        <app-message [control]="nome" error="required"
+          text="Informe o nome"></app-message>
+      </div>
+
+      <div class="ui-g-6 ui-md-6 ui-fluid">
+        <label>Numero</label>
+        <input pInputText type="text" name="numero" ngModel #numero="ngModel" 
+        [(ngModel)]="cartao.numeroCartao" required>
+
+        <app-message [control]="numero" error="required"
+          text="Informe o numero"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Tipo Cartão {{ tipoCartao.value }}</label>
+        <p-dropdown [options]="tipos" placeholder="Selecione" name="tipoCartao"
+          [autoWidth]="false" ngModel #tipoCartao="ngModel" [(ngModel)]="cartao.tipoCartao"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Usuário</label>
+        <p-dropdown name="usuario" [options]="usuarios" placeholder="Selecione"
+          [autoWidth]="false" [filter]="true"
+          [(ngModel)]="cartao.usuario.id"
+          required></p-dropdown>
+      </div>
+      
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"></button>
+        <a href="javascript:;" routerLink="/cartoes/all">Voltar para a pesquisa de cartões</a>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,45 @@
+
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>{{ editando ? 'Edição de' : 'Novo' }} Usuário</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome"
+          ngModel #nome="ngModel" [(ngModel)]="usuario.nome" required>
+
+        <app-message [control]="nome" error="required"
+          text="Informe o nome"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Email</label>
+        <input pInputText type="text" name="email"
+          ngModel #email="ngModel" [(ngModel)]="usuario.email" required>
+
+        <app-message [control]="email" error="required"
+          text="Informe o email"></app-message>
+      </div>
+      
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Senha</label>
+        <input pInputText type="text" name="senha"
+          ngModel #senha="ngModel" [(ngModel)]="usuario.senha" required>
+
+        <app-message [control]="senha" error="required"
+          text="Informe o senha"></app-message>
+      </div>  
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info"></button>
+        <a href="javascript:;" routerLink="/usuarios/all">Voltar para a pesquisa de usuários</a>
+      </div>
+    </div>
+
+  </form>
+</div>

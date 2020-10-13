@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="listar()">
+
+      <div class="ui-g-12">
+        <h1>Usuários</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome"
+          [(ngModel)]="nome">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="usuarios" [paginator]="true" [rows]="3" 
+      [responsive]="true" emptyMessage="Nenhum usuário encontrado" #tabela>
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="email" header="E-mail"></p-column>
+
+        <p-column styleClass="cartoes" header="Cartoes">
+          <ng-template let-user="rowData" pTemplate="body">
+            <a pButton icon="fa-list-ul" label="listar" 
+            pTooltip="Cartões do Usuário" tooltipPosition="top" [routerLink]="['/cartoes/all', user.id]"></a>
+          </ng-template>
+        </p-column>
+
+        <p-column styleClass="acoes" header="Ações">
+          <ng-template let-user="rowData" pTemplate="body">
+            <a pButton icon="fa-pencil" label="editar" [routerLink]="['/usuarios', user.id]"></a>
+            <button pButton icon="fa-trash" label="excluir" (click)="excluir(user)"></button>
+          </ng-template>
+      </p-column>
+
+      </p-dataTable>
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+    <button pButton label="Novo Usuário" routerLink="/usuarios/novo" class="campo"></button>
+    <a href="javascript:;" class="a-espaco" routerLink="/inicio">Voltar para o ínicio</a>
+  </div>
+
+</div>
